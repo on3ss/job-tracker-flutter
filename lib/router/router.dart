@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:job_tracker_fl/router/nested_navigation_scaffold.dart';
+import 'package:job_tracker_fl/widgets/nested_navigation_scaffold.dart';
 import 'package:job_tracker_fl/screens/dashboard/dashboard.dart';
 import 'package:job_tracker_fl/screens/jobs/jobs.dart';
 import 'package:job_tracker_fl/screens/more/more.dart';
