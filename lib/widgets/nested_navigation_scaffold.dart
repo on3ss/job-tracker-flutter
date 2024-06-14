@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
 class ScaffoldWithNestedNavigation extends StatelessWidget {
@@ -20,23 +21,33 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
     return Scaffold(
       body: navigationShell,
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        fixedColor: Theme.of(context).colorScheme.inversePrimary,
         currentIndex: navigationShell.currentIndex,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        unselectedItemColor: Theme.of(context).colorScheme.secondary,
+        useLegacyColorScheme: false,
+        selectedIconTheme: IconThemeData(
+          color: Theme.of(context).colorScheme.primary,
+          size: 26,
+        ),
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.dashboard_rounded),
-            label: 'Dashboard',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.timeline_rounded),
-            label: 'Schedule',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.task_rounded),
-            label: 'Jobs',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.more_vert_rounded),
-            label: 'More',
+            label: '',
           ),
         ],
         onTap: _goBranch,
