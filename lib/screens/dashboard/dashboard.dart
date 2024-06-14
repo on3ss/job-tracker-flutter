@@ -1,5 +1,6 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -9,7 +10,13 @@ class DashboardScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Dashboard'),
+        title: Text(
+          'Dashboard',
+          style: Theme.of(context)
+              .textTheme
+              .titleLarge!
+              .copyWith(fontWeight: FontWeight.w600),
+        ),
         actions: [
           ValueListenableBuilder(
             valueListenable: AdaptiveTheme.of(context).modeChangeNotifier,
@@ -20,9 +27,15 @@ class DashboardScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: const SafeArea(
+      body: SafeArea(
         child: Center(
-          child: Text('Dashboard'),
+          child: Text(
+            'Dashboard',
+            style: Theme.of(context)
+                .textTheme
+                .titleMedium!
+                .copyWith(fontWeight: FontWeight.bold),
+          ),
         ),
       ),
     );
@@ -31,11 +44,11 @@ class DashboardScreen extends StatelessWidget {
   IconData getThemeSwitchIcon(AdaptiveThemeMode mode) {
     switch (mode) {
       case AdaptiveThemeMode.light:
-        return Icons.dark_mode_rounded;
+        return FeatherIcons.moon;
       case AdaptiveThemeMode.dark:
-        return Icons.settings_system_daydream_rounded;
+        return FeatherIcons.smartphone;
       default:
-        return Icons.light_mode_rounded;
+        return Icons.sunny;
     }
   }
 }

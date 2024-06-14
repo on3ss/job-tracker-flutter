@@ -1,6 +1,7 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:job_tracker_fl/router/router.dart';
 
 void main() async {
@@ -23,8 +24,10 @@ class MyApp extends StatelessWidget {
       builder: (theme, darkTheme) => MaterialApp.router(
         debugShowCheckedModeBanner: false,
         title: 'JobTracker',
-        theme: theme,
-        darkTheme: darkTheme,
+        theme: theme.copyWith(
+            textTheme: GoogleFonts.poppinsTextTheme(theme.textTheme)),
+        darkTheme: darkTheme.copyWith(
+            textTheme: GoogleFonts.poppinsTextTheme(darkTheme.textTheme)),
         routerDelegate: router.routerDelegate,
         routeInformationParser: router.routeInformationParser,
         routeInformationProvider: router.routeInformationProvider,
