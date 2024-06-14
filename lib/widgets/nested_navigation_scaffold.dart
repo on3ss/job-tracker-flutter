@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
 class ScaffoldWithNestedNavigation extends StatelessWidget {
@@ -38,7 +37,7 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.timeline_rounded),
+            icon: Icon(Icons.schema_rounded),
             label: '',
           ),
           BottomNavigationBarItem(
@@ -46,7 +45,7 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.more_vert_rounded),
+            icon: Icon(Icons.settings_rounded),
             label: '',
           ),
         ],
