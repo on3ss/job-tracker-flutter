@@ -21,7 +21,6 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
       body: navigationShell,
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        fixedColor: Theme.of(context).colorScheme.inversePrimary,
         currentIndex: navigationShell.currentIndex,
         showSelectedLabels: false,
         showUnselectedLabels: false,

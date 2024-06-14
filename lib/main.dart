@@ -3,20 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:job_tracker_fl/router/router.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final savedThemeMode = await AdaptiveTheme.getThemeMode();
+  runApp(MyApp(savedTheme: savedThemeMode ?? AdaptiveThemeMode.system));
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
+  MyApp({super.key, required this.savedTheme});
   final GoRouter router = GoRouter(routes: $appRoutes);
+  final AdaptiveThemeMode savedTheme;
 
   @override
   Widget build(BuildContext context) {
     return AdaptiveTheme(
       light: ThemeData.light(useMaterial3: true),
       dark: ThemeData.dark(useMaterial3: true),
-      initial: AdaptiveThemeMode.system,
+      initial: savedTheme,
       builder: (theme, darkTheme) => MaterialApp.router(
         debugShowCheckedModeBanner: false,
         title: 'JobTracker',
