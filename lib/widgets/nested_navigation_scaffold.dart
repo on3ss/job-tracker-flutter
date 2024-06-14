@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:go_router/go_router.dart';
 
 class ScaffoldWithNestedNavigation extends StatelessWidget {
@@ -32,19 +33,19 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
         ),
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.dashboard_rounded),
+            icon: Icon(FeatherIcons.grid),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.schema_rounded),
+            icon: Icon(FeatherIcons.calendar),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.task_rounded),
+            icon: Icon(FeatherIcons.briefcase),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings_rounded),
+            icon: Icon(FeatherIcons.sliders),
             label: '',
           ),
         ],
