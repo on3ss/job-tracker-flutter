@@ -1,6 +1,7 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:job_tracker_fl/widgets/custom_appbar.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -8,25 +9,7 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(
-          'Dashboard',
-          style: Theme.of(context)
-              .textTheme
-              .titleLarge!
-              .copyWith(fontWeight: FontWeight.w600),
-        ),
-        actions: [
-          ValueListenableBuilder(
-            valueListenable: AdaptiveTheme.of(context).modeChangeNotifier,
-            builder: (_, mode, __) => IconButton(
-              onPressed: () => AdaptiveTheme.of(context).toggleThemeMode(),
-              icon: Icon(getThemeSwitchIcon(mode)),
-            ),
-          ),
-        ],
-      ),
+      appBar: const CustomAppBar(title: "Dashboard"),
       body: SafeArea(
         child: Center(
           child: Text(
