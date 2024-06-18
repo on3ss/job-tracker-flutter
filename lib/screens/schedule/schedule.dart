@@ -8,8 +8,8 @@ class ScheduleScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       appBar: CustomAppBar(title: "Schedule"),
-      body: Center(
-        child: Text("Schedule"),
+      body: SafeArea(
+        child: Placeholder(),
       ),
     );
   }

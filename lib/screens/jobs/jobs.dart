@@ -8,7 +8,9 @@ class JobsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       appBar: CustomAppBar(title: "Jobs"),
-      body: SafeArea(child: Text("List")),
+      body: SafeArea(
+        child: Placeholder(),
+      ),
     );
   }
 }
