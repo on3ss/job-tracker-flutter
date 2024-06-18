@@ -29,7 +29,7 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         unselectedItemColor:
             Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
-        selectedItemColor: Theme.of(context).colorScheme.primary,
+        selectedItemColor: Theme.of(context).colorScheme.onPrimary,
         useLegacyColorScheme: false,
         items: [
           BottomNavigationBarItem(
