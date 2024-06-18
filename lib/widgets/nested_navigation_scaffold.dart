@@ -4,9 +4,10 @@ import 'package:go_router/go_router.dart';
 
 class ScaffoldWithNestedNavigation extends StatelessWidget {
   const ScaffoldWithNestedNavigation({
-    Key? key,
+    super.key,
     required this.navigationShell,
-  }) : super(key: key ?? const ValueKey('ScaffoldWithNestedNavigation'));
+  });
+
   final StatefulNavigationShell navigationShell;
 
   void _goBranch(int index) {
@@ -25,32 +26,60 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
         currentIndex: navigationShell.currentIndex,
         showSelectedLabels: false,
         showUnselectedLabels: false,
-        unselectedItemColor: Theme.of(context).colorScheme.secondary,
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        unselectedItemColor:
+            Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
+        selectedItemColor: Theme.of(context).colorScheme.primary,
         useLegacyColorScheme: false,
-        selectedIconTheme: IconThemeData(
-          color: Theme.of(context).colorScheme.primary,
-          size: 26,
-        ),
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(FeatherIcons.grid),
+            icon: _buildIcon(
+              context,
+              FeatherIcons.grid,
+              navigationShell.currentIndex == 0,
+            ),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(FeatherIcons.calendar),
+            icon: _buildIcon(
+              context,
+              FeatherIcons.calendar,
+              navigationShell.currentIndex == 1,
+            ),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(FeatherIcons.briefcase),
+            icon: _buildIcon(
+              context,
+              FeatherIcons.briefcase,
+              navigationShell.currentIndex == 2,
+            ),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(FeatherIcons.sliders),
+            icon: _buildIcon(
+              context,
+              FeatherIcons.sliders,
+              navigationShell.currentIndex == 3,
+            ),
             label: '',
           ),
         ],
         onTap: _goBranch,
       ),
+    );
+  }
+
+  Widget _buildIcon(BuildContext context, IconData iconData, bool isSelected) {
+    return Container(
+      decoration: BoxDecoration(
+          color: isSelected
+              ? Theme.of(context).colorScheme.primary.withOpacity(0.2)
+              : Colors.transparent,
+          shape: BoxShape.rectangle,
+          borderRadius: BorderRadius.circular(16)),
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      child: Icon(iconData),
     );
   }
 }
