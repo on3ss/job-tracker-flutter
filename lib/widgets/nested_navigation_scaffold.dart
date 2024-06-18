@@ -21,52 +21,62 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: navigationShell,
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 1,
-        enableFeedback: true,
-        type: BottomNavigationBarType.fixed,
-        currentIndex: navigationShell.currentIndex,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        backgroundColor: Theme.of(context).colorScheme.surface,
-        unselectedItemColor:
-            Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
-        selectedItemColor: Theme.of(context).colorScheme.primary,
-        items: [
-          BottomNavigationBarItem(
-            icon: _buildIcon(
-              context,
-              HeroIcons.squares_2x2,
-              navigationShell.currentIndex == 0,
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 8,
             ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: _buildIcon(
-              context,
-              HeroIcons.calendar,
-              navigationShell.currentIndex == 1,
+          ],
+        ),
+        child: BottomNavigationBar(
+          elevation: 1,
+          enableFeedback: true,
+          type: BottomNavigationBarType.fixed,
+          currentIndex: navigationShell.currentIndex,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          unselectedItemColor:
+              Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
+          selectedItemColor: Theme.of(context).colorScheme.primary,
+          items: [
+            BottomNavigationBarItem(
+              icon: _buildIcon(
+                context,
+                HeroIcons.squares_2x2,
+                navigationShell.currentIndex == 0,
+              ),
+              label: '',
             ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: _buildIcon(
-              context,
-              HeroIcons.briefcase,
-              navigationShell.currentIndex == 2,
+            BottomNavigationBarItem(
+              icon: _buildIcon(
+                context,
+                HeroIcons.calendar,
+                navigationShell.currentIndex == 1,
+              ),
+              label: '',
             ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: _buildIcon(
-              context,
-              HeroIcons.adjustments_horizontal,
-              navigationShell.currentIndex == 3,
+            BottomNavigationBarItem(
+              icon: _buildIcon(
+                context,
+                HeroIcons.briefcase,
+                navigationShell.currentIndex == 2,
+              ),
+              label: '',
             ),
-            label: '',
-          ),
-        ],
-        onTap: _goBranch,
+            BottomNavigationBarItem(
+              icon: _buildIcon(
+                context,
+                HeroIcons.adjustments_horizontal,
+                navigationShell.currentIndex == 3,
+              ),
+              label: '',
+            ),
+          ],
+          onTap: _goBranch,
+        ),
       ),
     );
   }
