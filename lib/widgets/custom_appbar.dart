@@ -23,7 +23,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ValueListenableBuilder(
           valueListenable: AdaptiveTheme.of(context).modeChangeNotifier,
           builder: (_, mode, __) => IconButton(
-            onPressed: () => AdaptiveTheme.of(context).toggleThemeMode(),
+            onPressed: () =>
+                AdaptiveTheme.of(context).toggleThemeMode(useSystem: false),
             icon: Icon(getThemeSwitchIcon(mode)),
             color: Theme.of(context).colorScheme.onSurface,
           ),
