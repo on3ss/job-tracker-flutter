@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:go_router/go_router.dart';
+import 'package:icons_plus/icons_plus.dart';
 
 class ScaffoldWithNestedNavigation extends StatelessWidget {
   const ScaffoldWithNestedNavigation({
@@ -32,12 +32,11 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
         unselectedItemColor:
             Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
         selectedItemColor: Theme.of(context).colorScheme.primary,
-        useLegacyColorScheme: false,
         items: [
           BottomNavigationBarItem(
             icon: _buildIcon(
               context,
-              FeatherIcons.grid,
+              HeroIcons.squares_2x2,
               navigationShell.currentIndex == 0,
             ),
             label: '',
@@ -45,7 +44,7 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
           BottomNavigationBarItem(
             icon: _buildIcon(
               context,
-              FeatherIcons.calendar,
+              HeroIcons.calendar,
               navigationShell.currentIndex == 1,
             ),
             label: '',
@@ -53,7 +52,7 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
           BottomNavigationBarItem(
             icon: _buildIcon(
               context,
-              FeatherIcons.briefcase,
+              HeroIcons.briefcase,
               navigationShell.currentIndex == 2,
             ),
             label: '',
@@ -61,7 +60,7 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
           BottomNavigationBarItem(
             icon: _buildIcon(
               context,
-              FeatherIcons.sliders,
+              HeroIcons.adjustments_horizontal,
               navigationShell.currentIndex == 3,
             ),
             label: '',

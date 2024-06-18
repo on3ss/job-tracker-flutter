@@ -1,6 +1,4 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:job_tracker_fl/widgets/custom_appbar.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -22,16 +20,5 @@ class DashboardScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  IconData getThemeSwitchIcon(AdaptiveThemeMode mode) {
-    switch (mode) {
-      case AdaptiveThemeMode.light:
-        return FeatherIcons.moon;
-      case AdaptiveThemeMode.dark:
-        return FeatherIcons.smartphone;
-      default:
-        return Icons.sunny;
-    }
   }
 }

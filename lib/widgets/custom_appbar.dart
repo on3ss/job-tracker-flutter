@@ -1,6 +1,6 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:icons_plus/icons_plus.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -33,14 +33,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   IconData getThemeSwitchIcon(AdaptiveThemeMode mode) {
-    switch (mode) {
-      case AdaptiveThemeMode.light:
-        return FeatherIcons.moon;
-      case AdaptiveThemeMode.dark:
-        return FeatherIcons.smartphone;
-      default:
-        return Icons.sunny;
+    if (mode == AdaptiveThemeMode.light) {
+      return HeroIcons.moon;
     }
+    return HeroIcons.sun;
   }
 
   @override
