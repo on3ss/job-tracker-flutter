@@ -39,6 +39,7 @@ dependencies:
   adaptive_theme: ^3.6.0
   flutter_hooks: ^0.20.5
   icons_plus: ^5.0.0
+  faker: ^2.1.0
 
 dev_dependencies:
   flutter_test:
