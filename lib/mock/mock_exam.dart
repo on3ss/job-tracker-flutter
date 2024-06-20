@@ -1,5 +1,7 @@
 import 'package:faker/faker.dart';
 
+enum MockExamStatus { inProgress, cancelled, passed }
+
 class MockExam {
   final int id;
   final String title;
