@@ -4,8 +4,9 @@ import 'package:icons_plus/icons_plus.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
+  final PreferredSizeWidget? bottom;
 
-  const CustomAppBar({super.key, required this.title});
+  const CustomAppBar({super.key, required this.title, this.bottom});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
       ),
       actions: [
-        ValueListenableBuilder(
+        ValueListenableBuilder<AdaptiveThemeMode>(
           valueListenable: AdaptiveTheme.of(context).modeChangeNotifier,
           builder: (_, mode, __) => IconButton(
             onPressed: () =>
@@ -30,6 +31,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
       ],
+      bottom: bottom,
     );
   }
 
@@ -41,5 +43,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize {
+    final bottomHeight = bottom?.preferredSize.height ?? 0.0;
+    return Size.fromHeight(kToolbarHeight + bottomHeight);
+  }
 }

@@ -9,127 +9,39 @@ class JobsScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<MockExam> exams = useMemoized(() => MockExamGenerator.generate());
+    final tabController = useTabController(initialLength: statuses.length);
+
     return Scaffold(
-      appBar: const CustomAppBar(title: "Jobs"),
+      appBar: CustomAppBar(
+        title: "Jobs",
+        bottom: TabBar(
+          isScrollable: true,
+          controller: tabController,
+          tabs: _buildTabs(statuses),
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: _onFabPressed,
         child: const Icon(HeroIcons.plus),
       ),
       body: SafeArea(
-        child: ListView.builder(
-          itemCount: exams.length,
-          itemBuilder: (BuildContext context, int index) =>
-              JobListItem(exam: exams[index]),
+        child: TabBarView(
+          controller: tabController,
+          children: _buildTabViews(statuses),
         ),
       ),
     );
   }
-}
 
-class JobListItem extends StatelessWidget {
-  const JobListItem({
-    super.key,
-    required this.exam,
-  });
-
-  final MockExam exam;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0),
-      padding: const EdgeInsets.all(8.0),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primary.withOpacity(0.4),
-        borderRadius: BorderRadius.circular(4.0),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Text(
-                  exam.title,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleLarge!
-                      .copyWith(fontWeight: FontWeight.w600),
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primary,
-                  borderRadius: BorderRadius.circular(4.0),
-                ),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 6.0,
-                  vertical: 2.0,
-                ),
-                child: Text(
-                  exam.status,
-                  style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                        color: Theme.of(context).colorScheme.onPrimary,
-                        fontWeight: FontWeight.w600,
-                      ),
-                ),
-              )
-            ],
-          ),
-          Text(
-            exam.organization,
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
-          NextStepCard(exam: exam)
-        ],
-      ),
-    );
+  List<Widget> _buildTabs(List<String> statuses) {
+    return statuses.map((status) => Tab(text: status)).toList();
   }
-}
 
-class NextStepCard extends StatelessWidget {
-  const NextStepCard({
-    super.key,
-    required this.exam,
-  });
+  List<Widget> _buildTabViews(List<String> statuses) {
+    return statuses.map((status) => Center(child: Text(status))).toList();
+  }
 
-  final MockExam exam;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(8.0),
-      margin: const EdgeInsets.only(top: 8.0),
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primary.withOpacity(0.8),
-        borderRadius: BorderRadius.circular(4.0),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Text(
-                "Next Step",
-                style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: Theme.of(context).colorScheme.onPrimary,
-                    ),
-              ),
-            ],
-          ),
-          Text(
-            exam.steps.first.title,
-            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  color: Theme.of(context).colorScheme.onPrimary,
-                ),
-          ),
-        ],
-      ),
-    );
+  void _onFabPressed() {
+    // Implement your FAB action here
   }
 }

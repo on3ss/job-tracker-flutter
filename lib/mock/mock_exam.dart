@@ -1,6 +1,6 @@
 import 'package:faker/faker.dart';
 
-enum MockExamStatus { inProgress, cancelled, passed }
+List<String> statuses = ["upcoming", "in-progress", "done", "cancelled"];
 
 class MockExam {
   final int id;
@@ -45,7 +45,12 @@ class MockSubject {
 
 class MockExamGenerator {
   static final faker = Faker();
-  static final List<String> statuses = ["in-progress", "done", "cancelled"];
+  static final List<String> statuses = [
+    "upcoming",
+    "in-progress",
+    "done",
+    "cancelled"
+  ];
 
   static List<MockExam> generate() {
     return List.generate(
