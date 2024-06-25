@@ -22,7 +22,12 @@ class JobsScreen extends HookWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _onFabPressed,
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (_) => const ApplicationForm(),
+          );
+        },
         child: const Icon(HeroIcons.plus),
       ),
       body: SafeArea(
@@ -58,8 +63,128 @@ class JobsScreen extends HookWidget {
             ))
         .toList();
   }
+}
 
-  void _onFabPressed() {
-    // TODO: Implement your FAB action here
+class ApplicationForm extends HookWidget {
+  const ApplicationForm({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 36, horizontal: 16.0),
+      child: SingleChildScrollView(
+        child: Form(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Add Application",
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge!
+                    .copyWith(fontWeight: FontWeight.w600),
+              ),
+              const SizedBox(height: 16),
+              const CustomTextFormField(
+                label: "Title",
+                hint: "Title",
+              ),
+              const CustomTextFormField(
+                label: "Description",
+                hint: "Description",
+                minLines: 4,
+                maxLines: 6,
+              ),
+              const CustomTextFormField(
+                label: "Organization",
+                hint: "Organization",
+              ),
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 8.0),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                    ),
+                    onPressed: () {},
+                    child: Text(
+                      "Add",
+                      style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CustomTextFormField extends StatelessWidget {
+  final String label;
+  final String hint;
+  final int minLines;
+  final int maxLines;
+
+  const CustomTextFormField({
+    super.key,
+    this.minLines = 1,
+    this.maxLines = 1,
+    required this.label,
+    required this.hint,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8.0),
+      child: TextFormField(
+        minLines: minLines,
+        maxLines: maxLines,
+        decoration: InputDecoration(
+          labelText: label,
+          hintText: hint,
+          border: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.1),
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.1),
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.primary,
+              width: 2.0,
+            ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.error,
+              width: 2.0,
+            ),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.error,
+              width: 2.0,
+            ),
+          ),
+          errorStyle: TextStyle(
+            color: Theme.of(context).colorScheme.error,
+          ),
+        ),
+      ),
+    );
   }
 }
