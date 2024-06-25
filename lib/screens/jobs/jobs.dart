@@ -10,6 +10,7 @@ class JobsScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final tabController = useTabController(initialLength: statuses.length);
+    final exams = useMemoized(() => MockExamGenerator.generate());
 
     return Scaffold(
       appBar: CustomAppBar(
@@ -27,7 +28,7 @@ class JobsScreen extends HookWidget {
       body: SafeArea(
         child: TabBarView(
           controller: tabController,
-          children: _buildTabViews(statuses),
+          children: _buildTabViews(statuses, exams),
         ),
       ),
     );
@@ -37,11 +38,28 @@ class JobsScreen extends HookWidget {
     return statuses.map((status) => Tab(text: status)).toList();
   }
 
-  List<Widget> _buildTabViews(List<String> statuses) {
-    return statuses.map((status) => Center(child: Text(status))).toList();
+  List<Widget> _buildTabViews(List<String> statuses, List<MockExam> exams) {
+    return statuses
+        .map((status) => ListView.builder(
+              itemCount: exams.length,
+              itemBuilder: (BuildContext context, int index) => ListTile(
+                onTap: () {},
+                title: Text(exams[index].title),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(exams[index].organization),
+                    Text(
+                      "${exams[index].steps.length} of ${exams[index].steps.length} steps left",
+                    ),
+                  ],
+                ),
+              ),
+            ))
+        .toList();
   }
 
   void _onFabPressed() {
-    // Implement your FAB action here
+    // TODO: Implement your FAB action here
   }
 }
