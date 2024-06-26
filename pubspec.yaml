@@ -40,6 +40,7 @@ dependencies:
   flutter_hooks: ^0.20.5
   icons_plus: ^5.0.0
   faker: ^2.1.0
+  form_validator: ^2.1.1
 
 dev_dependencies:
   flutter_test:

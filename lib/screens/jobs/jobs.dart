@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:form_validator/form_validator.dart';
+import 'package:go_router/go_router.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:job_tracker_fl/mock/mock_exam.dart';
 import 'package:job_tracker_fl/widgets/custom_appbar.dart';
@@ -48,7 +50,7 @@ class JobsScreen extends HookWidget {
         .map((status) => ListView.builder(
               itemCount: exams.length,
               itemBuilder: (BuildContext context, int index) => ListTile(
-                onTap: () {},
+                onTap: () => context.goNamed('job-detail'),
                 title: Text(exams[index].title),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,19 +89,30 @@ class ApplicationForm extends HookWidget {
                     .copyWith(fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 16),
-              const CustomTextFormField(
+              CustomTextFormField(
                 label: "Title",
                 hint: "Title",
+                validator: ValidationBuilder()
+                    .required()
+                    .minLength(4)
+                    .maxLength(255)
+                    .build(),
               ),
-              const CustomTextFormField(
+              CustomTextFormField(
                 label: "Description",
                 hint: "Description",
                 minLines: 4,
                 maxLines: 6,
+                validator: ValidationBuilder().maxLength(255).build(),
               ),
-              const CustomTextFormField(
+              CustomTextFormField(
                 label: "Organization",
                 hint: "Organization",
+                validator: ValidationBuilder()
+                    .required()
+                    .minLength(4)
+                    .maxLength(255)
+                    .build(),
               ),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 8.0),
@@ -133,6 +146,7 @@ class CustomTextFormField extends StatelessWidget {
   final String hint;
   final int minLines;
   final int maxLines;
+  final String? Function(String?)? validator;
 
   const CustomTextFormField({
     super.key,
@@ -140,6 +154,7 @@ class CustomTextFormField extends StatelessWidget {
     this.maxLines = 1,
     required this.label,
     required this.hint,
+    this.validator,
   });
 
   @override
@@ -149,6 +164,7 @@ class CustomTextFormField extends StatelessWidget {
       child: TextFormField(
         minLines: minLines,
         maxLines: maxLines,
+        validator: validator,
         decoration: InputDecoration(
           labelText: label,
           hintText: hint,

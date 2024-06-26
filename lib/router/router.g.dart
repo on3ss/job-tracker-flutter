@@ -34,6 +34,13 @@ RouteBase get $appShellRouteData => StatefulShellRouteData.$route(
             GoRouteData.$route(
               path: '/jobs',
               factory: $JobsScreenRouteExtension._fromState,
+              routes: [
+                GoRouteData.$route(
+                  path: 'detail',
+                  name: 'job-detail',
+                  factory: $JobDetailScreenRouteExtension._fromState,
+                ),
+              ],
             ),
           ],
         ),
@@ -94,6 +101,24 @@ extension $JobsScreenRouteExtension on JobsScreenRoute {
 
   String get location => GoRouteData.$location(
         '/jobs',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $JobDetailScreenRouteExtension on JobDetailScreenRoute {
+  static JobDetailScreenRoute _fromState(GoRouterState state) =>
+      JobDetailScreenRoute();
+
+  String get location => GoRouteData.$location(
+        '/jobs/detail',
       );
 
   void go(BuildContext context) => context.go(location);
